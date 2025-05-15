@@ -5,7 +5,6 @@ import Dashboard from './pages/Dashboard';
 import ClientDashboard from './pages/ClientDashboard';
 import Appointment from './pages/Appointment';
 
-// Protected route component
 const ProtectedRoute = ({ isAuthenticated, children }: { isAuthenticated: boolean; children: React.ReactNode }) => {
   return isAuthenticated ? <>{children}</> : <Navigate to="/" replace />;
 };
@@ -13,7 +12,7 @@ const ProtectedRoute = ({ isAuthenticated, children }: { isAuthenticated: boolea
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  // Keep user logged in across reloads
+ 
   useEffect(() => {
     const token = localStorage.getItem('token');
     setIsAuthenticated(!!token);

@@ -6,7 +6,6 @@ import YouTubeEmbed from './YouTubeEmbed';
 const AuthPage = ({ onLogin }: { onLogin: () => void }) => {
   return (
     <div className="h-screen flex flex-col bg-gray-900">
-      {/* Header (20%) */}
       <div className="flex h-[13vh] bg-gray-200 shadow-md px-6 py-2">
         <div className="w-1/2 flex items-start">
           <Logo />
@@ -18,14 +17,11 @@ const AuthPage = ({ onLogin }: { onLogin: () => void }) => {
         </div>
       </div>
 
-      {/* Body (80%) */}
       <div className="flex flex-1 overflow-hidden px-6 pb-6">
-        {/* YouTube Embed */}
         <div className="w-1/2 pr-3 flex items-center justify-center">
           <YouTubeEmbed />
         </div>
 
-        {/* SignUp Form */}
         <div className="w-1/2 pl-3 h-full flex items-center justify-center">
           <SignUp />
         </div>

@@ -19,7 +19,7 @@ const SignUp = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
-    // Only allow numbers for contactNumber and ltmsNumber
+    
     if ((name === 'contactNumber' || name === 'ltmsNumber') && !/^\d*$/.test(value)) {
       return;
     }
@@ -48,7 +48,6 @@ const SignUp = () => {
     if (formData.password !== formData.confirmPassword) {
       alert('Sign up failed: Password and Confirm Password do not match.');
 
-      // Clear only password fields
       setFormData(prev => ({
         ...prev,
         password: '',
@@ -61,7 +60,6 @@ const SignUp = () => {
       const res = await axios.post('http://localhost:8080/signup', formData);
       alert(res.data.message || 'Sign up successful!');
 
-      // Clear all fields on success
       setFormData({
         firstName: '',
         middleInitial: '',
@@ -74,12 +72,10 @@ const SignUp = () => {
         confirmPassword: '',
       });
 
-      // Focus on the first input field after reset
       firstNameRef.current?.focus();
     } catch (error: any) {
       alert(error.response?.data?.error || 'Sign up failed');
 
-      // Clear only password fields on failure
       setFormData(prev => ({
         ...prev,
         password: '',

@@ -11,26 +11,23 @@ const SignIn = ({ onLogin }: { onLogin: () => void }) => {
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      // Send sign-in request to server
+      
       const res = await axios.post('http://localhost:8080/signin', { email, password });
 
-      // Store the JWT token and user info in localStorage
       localStorage.setItem('token', res.data.token);
 
-      // Get user info after login using the userId returned by the sign-in request
       const userRes = await axios.get(`http://localhost:8080/users/${res.data.userId}`, {
         headers: {
           Authorization: `Bearer ${res.data.token}`,
         },
       });      
 
-      // Store user information in localStorage or context
+
       localStorage.setItem('user', JSON.stringify(userRes.data));
 
-      // Call the onLogin callback to update authentication state
       onLogin();
 
-      // Navigate to the profile page
+
       navigate('/Dashboard');
     } catch (error: any) {
       setMessage(error.response?.data?.error || 'Login failed');

@@ -1,4 +1,3 @@
-// appointment.tsx
 import React, { useEffect, useState } from 'react';
 import { format } from 'date-fns';
 
@@ -23,11 +22,10 @@ const Appointment = () => {
     if (stored) {
       try {
         const parsed = JSON.parse(stored);
-        // Ensure it's an array
         if (Array.isArray(parsed)) {
           setAppointments(parsed);
         } else {
-          setAppointments([parsed]); // Wrap single object in an array
+          setAppointments([parsed]); 
         }
       } catch (err) {
         console.error("Failed to parse appointmentData:", err);

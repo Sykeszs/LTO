@@ -1,4 +1,3 @@
-// Dashboard.tsx
 import { useState, useEffect } from 'react';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import Header from './Header';

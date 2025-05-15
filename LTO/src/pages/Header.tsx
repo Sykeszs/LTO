@@ -1,4 +1,4 @@
-import LTOLogo from '../assets/LTO.png'; // Adjust path as needed
+import LTOLogo from '../assets/LTO.png'; 
 
 const Logo = () => {
   return (

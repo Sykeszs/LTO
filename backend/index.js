@@ -13,9 +13,8 @@ app.use(express.json());
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
-// Middleware to verify the JWT token
 const verifyToken = (req, res, next) => {
-  const token = req.header('Authorization')?.replace('Bearer ', ''); // Extract token from header
+  const token = req.header('Authorization')?.replace('Bearer ', '');
   if (!token) {
     return res.status(401).json({ error: 'Access denied. No token provided.' });
   }
@@ -25,8 +24,8 @@ const verifyToken = (req, res, next) => {
       return res.status(401).json({ error: 'Invalid or expired token.' });
     }
 
-    req.user = decoded; // Attach the decoded user data to the request object
-    next(); // Proceed to the next middleware (your route handler)
+    req.user = decoded; 
+    next(); 
   });
 };
 
@@ -94,7 +93,6 @@ app.post('/signin', (req, res) => {
 app.get('/users/:id', verifyToken, (req, res) => {
   const userId = req.params.id;
 
-  // Check if the user is trying to access their own data
   if (parseInt(userId) !== req.user.id) {
     return res.status(403).json({ error: 'Forbidden. You can only access your own data.' });
   }

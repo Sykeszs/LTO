@@ -121,7 +121,6 @@ const ClientDashboard = () => {
       return;
     }
   
-    // Validate uploaded files
     if (uploadedFiles.length !== dynamicRequirements.length || uploadedFiles.some(file => !file)) {
       alert('Please upload all required files.');
       return;
@@ -146,19 +145,18 @@ const ClientDashboard = () => {
   
     const appointmentTime = parseTime(selectedTimeSlot.split('-')[0].trim());
   
-    // Optional: Convert files to base64 or handle upload separately
     const uploadedFileNames = uploadedFiles.map(file => file?.name || '').join(', ');
   
     const payload = {
       request_id: requestId,
-      client_id: user.id,    // Ensure `user` has `id`
+      client_id: user.id,  
       user_id: user.id,
       appointment_date: appointmentDate,
       appointment_time: appointmentTime,
       transaction_type: transactionType,
       request_date: requestDate,
       status: 'pending',
-      uploaded_files: uploadedFileNames, // Adjust based on how backend stores files
+      uploaded_files: uploadedFileNames,  
     };
   
     try {
@@ -176,14 +174,13 @@ const ClientDashboard = () => {
   
       alert('Appointment successfully submitted!');
       
-      // Optionally reset form or navigate to another page
       setStep(1);
       setSelectedDate(null);
       setSelectedTimeSlot(null);
       setTransactionType('');
       setUploadedFiles([]);
       setDynamicRequirements([]);
-      navigate('/appointments/confirmation'); // or any route
+      navigate('/appointments/confirmation'); 
     } catch (error: any) {
       alert('Error submitting appointment: ' + error.message);
     }
@@ -251,7 +248,6 @@ const ClientDashboard = () => {
   const renderStep1 = () => (
     <div>
       <div className="flex gap-4">
-  {/* Time Picker (25% fixed width) */}
 
   <div  className="w-1/4 min-h-full max-h-full space-y-2">
         <p>
@@ -278,13 +274,12 @@ const ClientDashboard = () => {
         </button>
       ))
     ) : (
-      <div className="min-h-full max-h-full min-w-full max-w-full" /> // Optional empty filler
+      <div className="min-h-full max-h-full min-w-full max-w-full" /> 
     )}
         </div>
       </div>
 
 
-  {/* Calendar (75% fixed width) */}
   <div className="w-3/4">
     <div className="flex justify-between items-center mb-2">
       <button onClick={() => setCurrentMonth(subMonths(currentMonth, 1))}>&lt;</button>
@@ -374,14 +369,13 @@ const ClientDashboard = () => {
 
   return (
     <div className="flex flex-col h-full w-full">
-  {/* Step Content (85%) */}
+
   <div className="h-[85%] p-4">
     {step === 1 && renderStep1()}
     {step === 2 && renderStep2()}
     {step === 3 && renderStep3()}
   </div>
 
-  {/* Button Area (15%) */}
   <div className="h-[15%] w-full flex justify-end items-center px-4 py-2">
     <div className="min-w-1/4 max-w-1/4 flex justify-start items-center">
     </div>
